@@ -7,7 +7,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt'; //! se importa strategy des
 import { Repository } from 'typeorm';
 
 import { JwtPayload } from '../interfaces/jwt-payload.interface';
-import { User } from '../entities/user.entity';
+import { User } from '../..//users/entities/user.entity';
 
 //* esta estrategia usara JWT (se le pasa toda la configuracion al super)
 
@@ -36,7 +36,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   //? que previamente firmamos y emitimos a un usuario válido.
   //! si el token no es valido o ha expirado entpnces no entrará al metodo validate
   validate(payload: JwtPayload) {
-    //console.log('hola desde la estrategia (metodo validate)');
     const { id } = payload;
 
     const user = this.userRepository.findOneBy({ id }); //? se busca el user que tenga el id que estaba en esl payload

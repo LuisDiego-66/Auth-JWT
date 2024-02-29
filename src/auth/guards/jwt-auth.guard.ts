@@ -9,7 +9,6 @@ export class JwtAuthGuard extends AuthGuard() {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
-    //console.log('JwtGuard');
     //! si no se coloca, la funcion sobreescribira AuthGuard() y no se usara la estrategia de ese guard
     return super.canActivate(context); //! para que utilice el canActivate de AuthGuard()
   }

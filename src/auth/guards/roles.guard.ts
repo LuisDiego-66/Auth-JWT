@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { META_ROLES } from '../decorators/roles.decorator';
-import { User } from '../entities/user.entity';
+import { User } from '../../users/entities/user.entity';
 
 //* En este punto la peticion ya paso por authGuart() si que si llego aqui significa que existe un user en la req
 
@@ -17,8 +17,6 @@ export class RolesGuard implements CanActivate {
   ) {}
 
   canActivate(context: ExecutionContext): boolean {
-    //console.log('CustomGuard');
-
     //? Se recuperan los metadatos del controlador
 
     const roles: string[] = this.reflector.get(

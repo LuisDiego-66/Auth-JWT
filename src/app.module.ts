@@ -6,13 +6,16 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { AuthModule } from './auth/auth.module';
 import { join } from 'path';
 import { CommonModule } from './common/common.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
     //* Los Modulos que se importan en el module principal (APP)
 
     //?Todas las configuraciones del ConfigModule (variables de entorno)*//
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
 
     //?Configuracion de la Carpeta Publica*//
     ServeStaticModule.forRoot({
@@ -34,6 +37,8 @@ import { CommonModule } from './common/common.module';
     AuthModule,
 
     CommonModule,
+
+    UsersModule,
   ],
   controllers: [],
   providers: [],
