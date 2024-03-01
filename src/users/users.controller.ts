@@ -7,17 +7,24 @@ import {
   Delete,
   ParseUUIDPipe,
   Query,
+  Post,
 } from '@nestjs/common';
 
 import { Auth } from '../auth/decorators/auth.decorator';
 import { ValidRoles } from '../auth/interfaces/ValidRoles.interface';
 import { PaginationDto } from '../common/dtos/pagination.dto';
-import { UpdateUserDto } from './dto';
+import { CreateUserDto, UpdateUserDto } from './dto';
 import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
+
+  @Auth(ValidRoles.admin)
+  @Post()
+  create(@Query() createUserDto: CreateUserDto) {
+    return this.usersService.create(createUserDto);
+  }
 
   @Auth(ValidRoles.admin)
   @Get()

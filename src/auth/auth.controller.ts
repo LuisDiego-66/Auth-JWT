@@ -13,10 +13,10 @@ export class AuthController {
   ) {}
 
   //? EndPoint para el Registrar
-  @Post('register')
+  /*   @Post('register')
   registerUser(@Body() registerUserDto: RegisterUserDto) {
     return this.authService.register(registerUserDto);
-  }
+  } */
 
   //? EndPoint para el Login
   @Post('login')
